@@ -31,13 +31,21 @@ KNOWLEDGE_BASE = {
     ],
     'gantt': [
         "Gantt Chart untuk visualisasi timeline proyek.",
-        "Tambahkan task dengan durasi dan dependencies.",
-        "Monitor progress proyek secara visual."
+        "Tambahkan task dengan durasi dan assignee.",
+        "Monitor progress proyek secara visual dengan progress slider.",
+        "Update progress task real-time dengan drag slider."
+    ],
+    'blueprint': [
+        "Blueprints untuk manajemen gambar kerja.",
+        "Upload gambar dengan URL (Unsplash, Imgur, dll).",
+        "Kategorikan: Arsitektural, Struktural, Elektrikal, Plumbing.",
+        "Klik gambar untuk melihat detail full-screen."
     ],
     'default': [
         "Saya RancangBangun AI, siap membantu navigasi aplikasi.",
         "Klik menu di sidebar kiri untuk akses fitur.",
-        "Ada 20+ mini-apps: RAB, BOM, Gantt, Site Control, dan lainnya."
+        "Ada 20+ mini-apps: RAB, BOM, Gantt, Site Control, Blueprints, dan lainnya.",
+        "FASE 2 fitur baru: Gantt Chart, Site Control, dan Blueprints sudah aktif!"
     ]
 }
 
