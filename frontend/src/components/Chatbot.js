@@ -66,7 +66,7 @@ const Chatbot = ({ isOpen, setIsOpen }) => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-lg shadow-2xl flex flex-col z-50 border border-slate-200">
+        <div className="fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-lg shadow-2xl flex flex-col border border-slate-200" style={{ zIndex: 10000 }}>
           {/* Header */}
           <div className="bg-slate-900 text-white p-4 rounded-t-lg flex items-center gap-3">
             <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-xl">
