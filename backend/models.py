@@ -237,3 +237,163 @@ class MaintenanceScheduleCreate(BaseModel):
     status: str = "scheduled"
     assigned_to: Optional[str] = ""
     notes: Optional[str] = ""
+
+# Contractor Registry Models
+class ContractorProfile(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    company_name: str
+    license_number: str
+    license_expiry: str
+    specialization: List[str]  # ["Sipil", "Arsitektur", "MEP", etc]
+    established_year: int
+    address: str
+    phone: str
+    email: str
+    website: Optional[str] = ""
+    
+    # Verification Status
+    is_verified: bool = False
+    verification_date: Optional[str] = None
+    
+    # Financial & Legal
+    has_insurance: bool = False
+    insurance_value: float = 0
+    tax_id: str = ""
+    
+    # Performance Metrics
+    completed_projects: int = 0
+    ongoing_projects: int = 0
+    total_value_completed: float = 0
+    average_rating: float = 0.0
+    rating_count: int = 0
+    
+    # Compliance
+    k3_certified: bool = False
+    iso_certified: bool = False
+    
+    # Portfolio
+    portfolio_images: List[str] = []
+    
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class ContractorProfileCreate(BaseModel):
+    company_name: str
+    license_number: str
+    license_expiry: str
+    specialization: List[str]
+    established_year: int
+    address: str
+    phone: str
+    email: str
+    website: Optional[str] = ""
+    has_insurance: bool = False
+    insurance_value: float = 0
+    tax_id: str = ""
+    k3_certified: bool = False
+    iso_certified: bool = False
+    portfolio_images: List[str] = []
+
+# Review System Models
+class ContractorReview(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    contractor_id: str
+    project_id: str  # Link to actual project for verification
+    reviewer_name: str
+    reviewer_company: str
+    
+    # Multi-criteria Rating (1-5 stars)
+    quality_rating: float
+    timeliness_rating: float
+    budget_rating: float
+    communication_rating: float
+    overall_rating: float  # Average
+    
+    review_text: str
+    proof_images: List[str] = []  # Evidence photos
+    
+    is_verified: bool = False  # Admin verified
+    contractor_response: Optional[str] = None
+    
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class ContractorReviewCreate(BaseModel):
+    contractor_id: str
+    project_id: str
+    reviewer_name: str
+    reviewer_company: str
+    quality_rating: float
+    timeliness_rating: float
+    budget_rating: float
+    communication_rating: float
+    review_text: str
+    proof_images: List[str] = []
+
+# Bidding System Models
+class ProjectBid(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    project_id: str
+    contractor_id: str
+    contractor_name: str
+    
+    bid_amount: float
+    estimated_duration: int  # days
+    methodology: str
+    team_size: int
+    proposed_start_date: str
+    
+    attachments: List[str] = []  # Proposal documents
+    
+    status: str = "pending"  # pending, accepted, rejected
+    
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class ProjectBidCreate(BaseModel):
+    project_id: str
+    contractor_id: str
+    contractor_name: str
+    bid_amount: float
+    estimated_duration: int
+    methodology: str
+    team_size: int
+    proposed_start_date: str
+    attachments: List[str] = []
+
+# Transparency & Evidence Models
+class ProjectEvidence(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    project_id: str
+    evidence_type: str  # "progress_photo", "material_receipt", "inspection_report", "safety_audit"
+    
+    title: str
+    description: str
+    images: List[str]
+    
+    # Geo-tagging
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    location_name: Optional[str] = ""
+    
+    uploaded_by: str
+    upload_date: str
+    
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class ProjectEvidenceCreate(BaseModel):
+    project_id: str
+    evidence_type: str
+    title: str
+    description: str
+    images: List[str]
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    location_name: Optional[str] = ""
+    uploaded_by: str
+    upload_date: str
