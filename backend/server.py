@@ -33,6 +33,9 @@ api_router.include_router(blueprints.router)
 api_router.include_router(tenders.router)
 api_router.include_router(fat.router)
 api_router.include_router(maintenance.router)
+api_router.include_router(contractors.router)
+api_router.include_router(bidding.router)
+api_router.include_router(evidence.router)
 
 # Include the router in the main app
 app.include_router(api_router)
