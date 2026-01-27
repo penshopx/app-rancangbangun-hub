@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calculator, Search, FileText, Package, BarChart3, MapPin, CheckCircle2, Wrench } from 'lucide-react';
+import { Calculator, Search, FileText, Package, BarChart3, MapPin, CheckCircle2, Wrench, Users, Gavel } from 'lucide-react';
 
 const Sidebar = ({ activeApp, setActiveApp }) => {
   const apps = [
@@ -24,6 +24,13 @@ const Sidebar = ({ activeApp, setActiveApp }) => {
       items: [
         { id: 'fat', name: 'Uji Serah Terima', icon: CheckCircle2 },
         { id: 'maintenance', name: 'Maintenance', icon: Wrench },
+      ]
+    },
+    {
+      category: '4. Trust & Verifikasi',
+      items: [
+        { id: 'contractors', name: 'Contractor Registry', icon: Users },
+        { id: 'bidding', name: 'Bidding System', icon: Gavel },
       ]
     }
   ];
