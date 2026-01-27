@@ -57,7 +57,8 @@ const Chatbot = ({ isOpen, setIsOpen }) => {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 bg-slate-900 text-white p-4 rounded-full shadow-lg hover:bg-orange-500 transition-all z-50"
+        className="fixed bottom-6 right-6 bg-slate-900 text-white p-4 rounded-full shadow-lg hover:bg-orange-500 transition-all"
+        style={{ zIndex: 10000 }}
         data-testid="chatbot-toggle-button"
       >
         {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
