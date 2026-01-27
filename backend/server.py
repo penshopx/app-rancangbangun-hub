@@ -6,7 +6,7 @@ import logging
 from pathlib import Path
 
 # Import routes
-from routes import rab, bom, chat, gantt, site_reports, blueprints
+from routes import rab, bom, chat, gantt, site_reports, blueprints, tenders, fat, maintenance
 from database import client
 
 ROOT_DIR = Path(__file__).parent
@@ -30,6 +30,9 @@ api_router.include_router(chat.router)
 api_router.include_router(gantt.router)
 api_router.include_router(site_reports.router)
 api_router.include_router(blueprints.router)
+api_router.include_router(tenders.router)
+api_router.include_router(fat.router)
+api_router.include_router(maintenance.router)
 
 # Include the router in the main app
 app.include_router(api_router)
