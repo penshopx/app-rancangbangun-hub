@@ -111,13 +111,13 @@ async def get_contractor_reviews(contractor_id: str):
 
 @router.post("/seed-data")
 async def seed_contractor_data():
-    """Seed sample contractor data"""
+    """Seed sample contractor data with LPJK classification"""
     sample_contractors = [
         {
             "company_name": "PT Cipta Karya Konstruksi",
             "license_number": "LPJK-001234-2025",
             "license_expiry": "2027-12-31",
-            "specialization": ["Sipil", "Infrastruktur"],
+            "specialization": ["BG002", "BG003", "BS001"],  # LPJK codes
             "established_year": 2010,
             "address": "Jl. Sudirman No. 123, Jakarta",
             "phone": "021-5551234",
@@ -141,7 +141,7 @@ async def seed_contractor_data():
             "company_name": "CV Bangunan Jaya Abadi",
             "license_number": "LPJK-005678-2024",
             "license_expiry": "2026-06-30",
-            "specialization": ["Bangunan", "Arsitektur"],
+            "specialization": ["BG001", "BG006"],  # Hunian & Pendidikan
             "established_year": 2015,
             "address": "Jl. Gatot Subroto 456, Surabaya",
             "phone": "031-7778899",
@@ -161,10 +161,34 @@ async def seed_contractor_data():
             "portfolio_images": ["https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400"]
         },
         {
+            "company_name": "PT Infrastruktur Nusantara (Spesialis)",
+            "license_number": "LPJK-002468-2025",
+            "license_expiry": "2028-12-31",
+            "specialization": ["BS001", "BS002", "KK008"],  # Jalan, Jembatan, Aspal
+            "established_year": 2008,
+            "address": "Jl. Diponegoro 88, Bandung",
+            "phone": "022-6667788",
+            "email": "info@infrastrukturnusantara.co.id",
+            "website": "www.infrastrukturnusantara.co.id",
+            "is_verified": True,
+            "verification_date": "2025-01-20",
+            "has_insurance": True,
+            "insurance_value": 10000000000,
+            "tax_id": "03.456.789.0-123.000",
+            "completed_projects": 62,
+            "ongoing_projects": 12,
+            "total_value_completed": 280000000000,
+            "average_rating": 4.8,
+            "rating_count": 48,
+            "k3_certified": True,
+            "iso_certified": True,
+            "portfolio_images": ["https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400"]
+        },
+        {
             "company_name": "UD Konstruksi Mandiri (Unverified)",
             "license_number": "LPJK-009999-2023",
             "license_expiry": "2025-03-15",
-            "specialization": ["Sipil"],
+            "specialization": ["BG009"],  # Gedung Lainnya
             "established_year": 2020,
             "address": "Jl. Pahlawan 789, Bandung",
             "phone": "022-4445566",
@@ -192,4 +216,4 @@ async def seed_contractor_data():
         doc['created_at'] = doc['created_at'].isoformat()
         await db.contractors.insert_one(doc)
     
-    return {"message": f"{len(sample_contractors)} contractors seeded successfully"}
+    return {"message": f"{len(sample_contractors)} contractors with LPJK classification seeded successfully"}
