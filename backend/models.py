@@ -159,3 +159,81 @@ class BlueprintCreate(BaseModel):
     version: str = "1.0"
     notes: Optional[str] = ""
     uploaded_by: Optional[str] = ""
+
+# Tender Models
+class Tender(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    category: str
+    budget: float
+    location: str
+    deadline: str  # ISO date
+    status: str = "open"  # open, closed, awarded
+    description: str
+    owner: str
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class TenderCreate(BaseModel):
+    title: str
+    category: str
+    budget: float
+    location: str
+    deadline: str
+    status: str = "open"
+    description: str
+    owner: str
+
+# FAT (Factory Acceptance Test) Models
+class FATChecklistItem(BaseModel):
+    item_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    description: str
+    category: str  # equipment, documentation, performance
+    status: str = "pending"  # pending, pass, fail
+    notes: Optional[str] = ""
+
+class FATChecklist(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    project_id: Optional[str] = None
+    test_date: str
+    equipment_name: str
+    items: List[FATChecklistItem]
+    signed_by: Optional[str] = ""
+    overall_status: str = "in_progress"  # in_progress, approved, rejected
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class FATChecklistCreate(BaseModel):
+    project_id: Optional[str] = None
+    test_date: str
+    equipment_name: str
+    items: List[FATChecklistItem]
+    signed_by: Optional[str] = ""
+    overall_status: str = "in_progress"
+
+# Maintenance Models
+class MaintenanceSchedule(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    equipment_name: str
+    equipment_type: str
+    frequency: str  # daily, weekly, monthly, yearly
+    last_maintenance: Optional[str] = None
+    next_due: str
+    status: str = "scheduled"  # scheduled, overdue, completed
+    assigned_to: Optional[str] = ""
+    notes: Optional[str] = ""
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class MaintenanceScheduleCreate(BaseModel):
+    equipment_name: str
+    equipment_type: str
+    frequency: str
+    last_maintenance: Optional[str] = None
+    next_due: str
+    status: str = "scheduled"
+    assigned_to: Optional[str] = ""
+    notes: Optional[str] = ""
