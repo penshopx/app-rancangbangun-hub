@@ -62,8 +62,10 @@ async def send_chat_message(message: ChatMessageCreate):
         detected_category = 'bom'
     elif any(word in query for word in ['lapor', 'lapangan', 'site', 'control', 'harian']):
         detected_category = 'site-control'
-    elif any(word in query for word in ['gantt', 'timeline', 'jadwal', 'schedule']):
+    elif any(word in query for word in ['gantt', 'timeline', 'jadwal', 'schedule', 'task']):
         detected_category = 'gantt'
+    elif any(word in query for word in ['blueprint', 'gambar', 'drawing', 'denah']):
+        detected_category = 'blueprint'
     
     # Get random response from knowledge base
     import random
