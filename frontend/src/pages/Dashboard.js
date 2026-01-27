@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Sidebar from '@/components/Sidebar';
 import RABCalculator from '@/components/apps/RABCalculator';
 import SmartBOM from '@/components/apps/SmartBOM';
+import GanttChart from '@/components/apps/GanttChart';
+import SiteControl from '@/components/apps/SiteControl';
+import Blueprints from '@/components/apps/Blueprints';
 import Chatbot from '@/components/Chatbot';
 import PlaceholderApp from '@/components/apps/PlaceholderApp';
 
@@ -15,14 +18,14 @@ const Dashboard = () => {
         return <RABCalculator />;
       case 'bom':
         return <SmartBOM />;
+      case 'gantt':
+        return <GanttChart />;
+      case 'site-control':
+        return <SiteControl />;
+      case 'blueprint':
+        return <Blueprints />;
       case 'search':
         return <PlaceholderApp title="Search" icon="🔍" description="Fitur pencarian tender dan pengadaan" />;
-      case 'blueprint':
-        return <PlaceholderApp title="Blueprints" icon="📐" description="Upload dan kelola gambar kerja" />;
-      case 'gantt':
-        return <PlaceholderApp title="Gantt Chart" icon="📊" description="Timeline dan scheduling proyek" />;
-      case 'site-control':
-        return <PlaceholderApp title="Site Control" icon="🎯" description="Laporan harian dari lapangan" />;
       case 'fat':
         return <PlaceholderApp title="Uji Serah Terima" icon="✅" description="Checklist FAT (Factory Acceptance Test)" />;
       case 'maintenance':
