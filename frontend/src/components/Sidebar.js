@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calculator, Search, FileText, Package, BarChart3, MapPin, CheckCircle2, Wrench, Users, Gavel } from 'lucide-react';
+import { Calculator, Search, FileText, Package, BarChart3, MapPin, CheckCircle2, Wrench, Users, Gavel, DollarSign, FileCheck, FolderOpen, UserCheck, Truck, Shield, Activity, TrendingUp, BarChart } from 'lucide-react';
 
 const Sidebar = ({ activeApp, setActiveApp }) => {
   const apps = [
@@ -8,6 +8,7 @@ const Sidebar = ({ activeApp, setActiveApp }) => {
       items: [
         { id: 'rab', name: 'RAB Calc', icon: Calculator },
         { id: 'search', name: 'Search', icon: Search },
+        { id: 'bidding', name: 'Bidding', icon: Gavel },
       ]
     },
     {
@@ -16,21 +17,39 @@ const Sidebar = ({ activeApp, setActiveApp }) => {
         { id: 'blueprint', name: 'Blueprints', icon: FileText },
         { id: 'bom', name: 'Smart BOM', icon: Package },
         { id: 'gantt', name: 'Gantt', icon: BarChart3 },
-        { id: 'site-control', name: 'Site Control', icon: MapPin },
+        { id: 'budget', name: 'Budget', icon: DollarSign },
       ]
     },
     {
       category: '3. Pelaksanaan',
       items: [
-        { id: 'fat', name: 'Uji Serah Terima', icon: CheckCircle2 },
+        { id: 'site-control', name: 'Site Control', icon: MapPin },
+        { id: 'team', name: 'Team', icon: UserCheck },
+        { id: 'equipment', name: 'Equipment', icon: Truck },
+        { id: 'safety', name: 'Safety', icon: Shield },
+      ]
+    },
+    {
+      category: '4. Quality & Compliance',
+      items: [
+        { id: 'fat', name: 'FAT', icon: CheckCircle2 },
+        { id: 'quality', name: 'QC', icon: Activity },
         { id: 'maintenance', name: 'Maintenance', icon: Wrench },
       ]
     },
     {
-      category: '4. Trust & Verifikasi',
+      category: '5. Finansial & Admin',
       items: [
-        { id: 'contractors', name: 'Contractor Registry', icon: Users },
-        { id: 'bidding', name: 'Bidding System', icon: Gavel },
+        { id: 'invoice', name: 'Invoice', icon: FileCheck },
+        { id: 'documents', name: 'Documents', icon: FolderOpen },
+      ]
+    },
+    {
+      category: '6. Trust & Analytics',
+      items: [
+        { id: 'contractors', name: 'Contractors', icon: Users },
+        { id: 'client-portal', name: 'Client Portal', icon: TrendingUp },
+        { id: 'analytics', name: 'Analytics', icon: BarChart },
       ]
     }
   ];
