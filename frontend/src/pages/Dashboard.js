@@ -8,7 +8,7 @@ import Blueprints from '@/components/apps/Blueprints';
 import Search from '@/components/apps/Search';
 import FATChecklist from '@/components/apps/FATChecklist';
 import Maintenance from '@/components/apps/Maintenance';
-import ContractorRegistry from '@/components/apps/ContractorRegistry';
+import ContractorRegistry from '@/components/apps/ContractorRegistryEnhanced';
 import Chatbot from '@/components/Chatbot';
 import PlaceholderApp from '@/components/apps/PlaceholderApp';
 
