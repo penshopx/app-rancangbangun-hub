@@ -6,7 +6,7 @@ import logging
 from pathlib import Path
 
 # Import routes
-from routes import rab, bom, chat, gantt, site_reports, blueprints, tenders, fat, maintenance, contractors, bidding, evidence, lpjk, rab_enhanced, marketplace
+from routes import rab, bom, chat, gantt, site_reports, blueprints, tenders, fat, maintenance, contractors, bidding, evidence, lpjk, rab_enhanced, marketplace, chatbot_agentic
 from database import client
 
 ROOT_DIR = Path(__file__).parent
