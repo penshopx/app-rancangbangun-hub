@@ -102,3 +102,60 @@ class ChatMessage(BaseModel):
 
 class ChatMessageCreate(BaseModel):
     user_query: str
+
+# Gantt Chart Models
+class GanttTask(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    project_id: Optional[str] = None
+    task_name: str
+    start_date: str  # ISO format date
+    end_date: str
+    progress: float = 0.0  # 0-100
+    assignee: Optional[str] = ""
+    priority: str = "medium"  # low, medium, high
+    status: str = "not_started"  # not_started, in_progress, completed
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class GanttTaskCreate(BaseModel):
+    project_id: Optional[str] = None
+    task_name: str
+    start_date: str
+    end_date: str
+    progress: float = 0.0
+    assignee: Optional[str] = ""
+    priority: str = "medium"
+    status: str = "not_started"
+
+class GanttTaskUpdate(BaseModel):
+    task_name: Optional[str] = None
+    start_date: Optional[str] = None
+    end_date: Optional[str] = None
+    progress: Optional[float] = None
+    assignee: Optional[str] = None
+    priority: Optional[str] = None
+    status: Optional[str] = None
+
+# Blueprint Models
+class Blueprint(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    project_id: Optional[str] = None
+    title: str
+    category: str  # structural, architectural, electrical, plumbing
+    image_url: str
+    version: str = "1.0"
+    notes: Optional[str] = ""
+    uploaded_by: Optional[str] = ""
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class BlueprintCreate(BaseModel):
+    project_id: Optional[str] = None
+    title: str
+    category: str
+    image_url: str
+    version: str = "1.0"
+    notes: Optional[str] = ""
+    uploaded_by: Optional[str] = ""
