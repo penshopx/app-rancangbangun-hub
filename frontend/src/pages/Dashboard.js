@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from '@/components/Sidebar';
-import RABCalculator from '@/components/apps/RABCalculator';
+import RABCalculator from '@/components/apps/RABEnhanced';
 import SmartBOM from '@/components/apps/SmartBOM';
 import GanttChart from '@/components/apps/GanttChart';
 import SiteControl from '@/components/apps/SiteControl';
