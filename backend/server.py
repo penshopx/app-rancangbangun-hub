@@ -38,6 +38,8 @@ api_router.include_router(bidding.router)
 api_router.include_router(evidence.router)
 api_router.include_router(lpjk.router)
 api_router.include_router(rab_enhanced.router)
+api_router.include_router(marketplace.router)
+api_router.include_router(chatbot_agentic.router)
 
 # Include the router in the main app
 app.include_router(api_router)
