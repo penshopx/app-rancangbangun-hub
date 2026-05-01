@@ -5,6 +5,8 @@ import { Calculator, Search, FileText, Package, BarChart3, MapPin, CheckCircle2,
 const Sidebar = ({ activeApp, setActiveApp }) => {
   const navigate = useNavigate();
 
+  const newApps = ['marketplace', 'project-manager', 'contractors', 'budget', 'invoice'];
+
   const apps = [
     {
       category: '🌐 Marketplace',
@@ -91,7 +93,7 @@ const Sidebar = ({ activeApp, setActiveApp }) => {
             {category.items.map((app) => {
               const Icon = app.icon;
               const isActive = activeApp === app.id;
-              const isNew = ['marketplace', 'project-manager'].includes(app.id);
+              const isNew = newApps.includes(app.id);
               return (
                 <button
                   key={app.id}

@@ -61,15 +61,20 @@ backend/          FastAPI app
 1. **Phase 1 (Done)**: Landing page + waitlist — `/` route with hero, features, testimonials, waitlist form
 2. **Phase 2 (Done)**: Marketplace Owner ↔ Kontraktor — project listings, search/filter, bid submission
 3. **Phase 3 (Done)**: Manajemen Proyek — milestones, termin payments, progress tracking, daily reports
-4. **Phase 4 (Planned)**: Enhanced Contractor Profiles — SBU/LPJK verification, portfolio, ratings
+4. **Phase 4 (Done)**: Enhanced Contractor Profiles — SBU/LPJK verification, portfolio, ratings, contact
+5. **Phase 4b (Done)**: Budget Tracker — RAB vs actual, overspend alerts, category breakdown
+6. **Phase 4c (Done)**: Invoice Manager — invoice creation, PDF preview, payment tracking
 
 ## Key Features
-- **Marketplace**: Post projects, filter by category/location, submit competitive bids
+- **Landing Page** (`/`): Marketing page with waitlist signup
+- **Marketplace**: Post projects, filter by category/location, submit competitive bids  
 - **Project Manager**: Milestone tracking, termin payment disbursement, daily field reports
+- **Contractor Profile**: Verified contractors with SBU/LPJK certs, portfolio, star ratings, contact
+- **Budget Tracker**: RAB vs actual spending with category drill-down and overspend alerts
+- **Invoice Manager**: Create/view invoices with PPN, payment status, PDF print
 - **RAB Calculator**: Professional cost estimation with material/labor database
-- **Contractor Registry**: Verified contractors with LPJK/SBU certification display
 - **AI Chatbot**: Agentic construction assistant
-- **20+ Mini-apps**: Full construction lifecycle coverage
+- **22+ Mini-apps**: Full construction lifecycle coverage
 
 ## Setup Notes
 - Frontend proxies `/api/*` calls to backend at `http://localhost:8000`

@@ -12,6 +12,9 @@ import Maintenance from '@/components/apps/Maintenance';
 import ContractorRegistry from '@/components/apps/ContractorRegistryEnhanced';
 import Marketplace from '@/components/apps/Marketplace';
 import ProjectManager from '@/components/apps/ProjectManager';
+import ContractorProfile from '@/components/apps/ContractorProfile';
+import BudgetTracker from '@/components/apps/BudgetTracker';
+import InvoiceManager from '@/components/apps/InvoiceManager';
 import Chatbot from '@/components/ChatbotAgentic';
 import PlaceholderApp from '@/components/apps/PlaceholderApp';
 
@@ -73,17 +76,17 @@ const Dashboard = () => {
       case 'search': return <Search />;
       case 'fat': return <FATChecklist />;
       case 'maintenance': return <Maintenance />;
-      case 'contractors': return <ContractorRegistry />;
+      case 'contractors': return <ContractorProfile />;
       case 'marketplace': return <Marketplace />;
       case 'project-manager': return <ProjectManager />;
+      case 'budget': return <BudgetTracker />;
+      case 'invoice': return <InvoiceManager />;
 
       case 'bidding': return <PlaceholderApp title="Bidding System" icon="⚖️" description="Sistem tender kompetitif — kontraktor submit proposal, owner compare & select best offer" />;
-      case 'budget': return <PlaceholderApp title="Budget Tracker" icon="💰" description="Real-time budget vs actual spending monitoring dengan alert overspend" />;
       case 'team': return <PlaceholderApp title="Team Management" icon="👥" description="Worker assignment, attendance tracking, dan payroll management" />;
       case 'equipment': return <PlaceholderApp title="Equipment Tracker" icon="🚛" description="Heavy equipment monitoring: lokasi, fuel, service schedule, availability" />;
       case 'safety': return <PlaceholderApp title="Safety Inspector" icon="🛡️" description="Daily K3 safety checks, incident reporting, safety training tracker" />;
       case 'quality': return <PlaceholderApp title="Quality Control" icon="📋" description="QC inspection checklist, defect tracking, rework management" />;
-      case 'invoice': return <PlaceholderApp title="Invoice Management" icon="📄" description="Invoice creation, payment tracking, aging report, automatic reminders" />;
       case 'documents': return <PlaceholderApp title="Document Manager" icon="📁" description="Central repository: contracts, permits, certificates, legal documents" />;
       case 'client-portal': return <PlaceholderApp title="Client Portal" icon="📊" description="Owner dashboard: progress overview, budget status, milestone tracking" />;
       case 'analytics': return <PlaceholderApp title="Analytics Dashboard" icon="📈" description="KPI metrics, performance trends, predictive analytics, custom reports" />;
