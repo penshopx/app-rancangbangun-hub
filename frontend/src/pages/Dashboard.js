@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '@/components/Sidebar';
 import RABCalculator from '@/components/apps/RABEnhanced';
 import SmartBOM from '@/components/apps/SmartBOM';
@@ -9,109 +10,94 @@ import Search from '@/components/apps/Search';
 import FATChecklist from '@/components/apps/FATChecklist';
 import Maintenance from '@/components/apps/Maintenance';
 import ContractorRegistry from '@/components/apps/ContractorRegistryEnhanced';
+import Marketplace from '@/components/apps/Marketplace';
+import ProjectManager from '@/components/apps/ProjectManager';
 import Chatbot from '@/components/ChatbotAgentic';
 import PlaceholderApp from '@/components/apps/PlaceholderApp';
+
+const WelcomeScreen = ({ setActiveApp }) => {
+  const navigate = useNavigate();
+  const quickActions = [
+    { key: 'marketplace', icon: '🏗️', label: 'Cari Proyek / Kontraktor', color: 'orange' },
+    { key: 'project-manager', icon: '📊', label: 'Kelola Proyek Saya', color: 'blue' },
+    { key: 'rab', icon: '💰', label: 'Hitung RAB', color: 'green' },
+    { key: 'contractors', icon: '✅', label: 'Direktori Kontraktor', color: 'purple' },
+  ];
+  return (
+    <div className="flex items-center justify-center h-full bg-slate-50">
+      <div className="text-center max-w-3xl px-4 w-full">
+        <button onClick={() => navigate('/')} className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-orange-500 mb-6 transition-colors">
+          ← Kembali ke Halaman Utama
+        </button>
+        <div className="text-7xl mb-4">🏗️</div>
+        <h2 className="text-3xl font-bold text-slate-800 mb-2">RancangBangun</h2>
+        <p className="text-slate-500 mb-1">Platform Marketplace Konstruksi Terintegrasi</p>
+        <p className="text-orange-500 font-semibold text-sm mb-8">✨ Menghubungkan Owner · Kontraktor · Supplier · Konsultan</p>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+          {quickActions.map(a => {
+            const colors = { orange: 'bg-orange-50 hover:bg-orange-100 border-orange-100 text-orange-700', blue: 'bg-blue-50 hover:bg-blue-100 border-blue-100 text-blue-700', green: 'bg-green-50 hover:bg-green-100 border-green-100 text-green-700', purple: 'bg-purple-50 hover:bg-purple-100 border-purple-100 text-purple-700' };
+            return (
+              <button key={a.key} onClick={() => setActiveApp(a.key)} className={`${colors[a.color]} border rounded-xl p-4 text-center transition-all hover:-translate-y-0.5 hover:shadow-sm`}>
+                <div className="text-2xl mb-2">{a.icon}</div>
+                <div className="text-xs font-semibold">{a.label}</div>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+          {[['📊 Procurement', 'RAB, Search, Bidding'], ['📐 Planning', 'Blueprint, BOM, Gantt'], ['🏗️ Execution', 'Site, Team, Equipment, Safety'], ['✅ Quality', 'FAT, QC, Maintenance'], ['💰 Finance', 'Invoice, Documents'], ['📈 Intelligence', 'Analytics, Portal']].map(([title, desc]) => (
+            <div key={title} className="bg-white border border-slate-100 rounded-lg p-2.5 text-left">
+              <div className="font-semibold text-slate-700">{title}</div>
+              <div className="text-slate-400 mt-0.5">{desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Dashboard = () => {
   const [activeApp, setActiveApp] = useState('welcome');
   const [chatOpen, setChatOpen] = useState(false);
 
   const renderApp = () => {
-    switch(activeApp) {
-      case 'rab':
-        return <RABCalculator />;
-      case 'bom':
-        return <SmartBOM />;
-      case 'gantt':
-        return <GanttChart />;
-      case 'site-control':
-        return <SiteControl />;
-      case 'blueprint':
-        return <Blueprints />;
-      case 'search':
-        return <Search />;
-      case 'fat':
-        return <FATChecklist />;
-      case 'maintenance':
-        return <Maintenance />;
-      case 'contractors':
-        return <ContractorRegistry />;
-      
-      // New Apps (9-20)
-      case 'bidding':
-        return <PlaceholderApp title="Bidding System" icon="⚖️" description="Sistem tender kompetitif - kontraktor submit proposal, owner compare & select best offer" />;
-      case 'budget':
-        return <PlaceholderApp title="Budget Tracker" icon="💰" description="Real-time budget vs actual spending monitoring dengan alert overspend" />;
-      case 'team':
-        return <PlaceholderApp title="Team Management" icon="👥" description="Worker assignment, attendance tracking, dan payroll management" />;
-      case 'equipment':
-        return <PlaceholderApp title="Equipment Tracker" icon="🚛" description="Heavy equipment monitoring: lokasi, fuel, service schedule, availability" />;
-      case 'safety':
-        return <PlaceholderApp title="Safety Inspector" icon="🛡️" description="Daily K3 safety checks, incident reporting, safety training tracker" />;
-      case 'quality':
-        return <PlaceholderApp title="Quality Control" icon="📋" description="QC inspection checklist, defect tracking, rework management" />;
-      case 'invoice':
-        return <PlaceholderApp title="Invoice Management" icon="📄" description="Invoice creation, payment tracking, aging report, automatic reminders" />;
-      case 'documents':
-        return <PlaceholderApp title="Document Manager" icon="📁" description="Central repository: contracts, permits, certificates, legal documents" />;
-      case 'client-portal':
-        return <PlaceholderApp title="Client Portal" icon="📊" description="Owner dashboard: progress overview, budget status, milestone tracking" />;
-      case 'analytics':
-        return <PlaceholderApp title="Analytics Dashboard" icon="📈" description="KPI metrics, performance trends, predictive analytics, custom reports" />;
-      
-      default:
-        return (
-          <div className="flex items-center justify-center h-full">
-            <div className="text-center max-w-2xl px-4">
-              <div className="text-8xl mb-6">🏗️</div>
-              <h2 className="text-3xl font-bold text-slate-800 mb-4" style={{fontFamily: 'Poppins, sans-serif'}}>RancangBangun</h2>
-              <p className="text-slate-600 text-xl mb-2">Platform Manajemen Konstruksi Terintegrasi</p>
-              <p className="text-orange-600 font-semibold text-lg mb-4">✨ 20 Mini-Apps Ekosistem Lengkap!</p>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8 text-xs">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                  <p className="font-bold text-blue-800 mb-1">📋 11 Apps Active</p>
-                  <p className="text-blue-700">Fully functional & tested</p>
-                </div>
-                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                  <p className="font-bold text-green-800 mb-1">✅ Trust System</p>
-                  <p className="text-green-700">Contractor verification</p>
-                </div>
-                <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
-                  <p className="font-bold text-purple-800 mb-1">⭐ Rating 4.7</p>
-                  <p className="text-purple-700">From 32 reviews</p>
-                </div>
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                  <p className="font-bold text-orange-800 mb-1">🛡️ Insurance</p>
-                  <p className="text-orange-700">Verified coverage</p>
-                </div>
-              </div>
+    switch (activeApp) {
+      case 'rab': return <RABCalculator />;
+      case 'bom': return <SmartBOM />;
+      case 'gantt': return <GanttChart />;
+      case 'site-control': return <SiteControl />;
+      case 'blueprint': return <Blueprints />;
+      case 'search': return <Search />;
+      case 'fat': return <FATChecklist />;
+      case 'maintenance': return <Maintenance />;
+      case 'contractors': return <ContractorRegistry />;
+      case 'marketplace': return <Marketplace />;
+      case 'project-manager': return <ProjectManager />;
 
-              <div className="mt-6 p-4 bg-slate-100 rounded-lg">
-                <p className="text-sm text-slate-700 font-semibold mb-2">🚀 Ekosistem Lengkap:</p>
-                <div className="grid grid-cols-2 gap-2 text-xs text-left">
-                  <div className="bg-white p-2 rounded">📊 <strong>Procurement:</strong> RAB, Search, Bidding</div>
-                  <div className="bg-white p-2 rounded">📐 <strong>Planning:</strong> Blueprint, BOM, Gantt, Budget</div>
-                  <div className="bg-white p-2 rounded">🏗️ <strong>Execution:</strong> Site, Team, Equipment, Safety</div>
-                  <div className="bg-white p-2 rounded">✅ <strong>QC:</strong> FAT, Quality, Maintenance</div>
-                  <div className="bg-white p-2 rounded">💰 <strong>Finance:</strong> Invoice, Documents</div>
-                  <div className="bg-white p-2 rounded">📈 <strong>Intelligence:</strong> Contractors, Portal, Analytics</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
+      case 'bidding': return <PlaceholderApp title="Bidding System" icon="⚖️" description="Sistem tender kompetitif — kontraktor submit proposal, owner compare & select best offer" />;
+      case 'budget': return <PlaceholderApp title="Budget Tracker" icon="💰" description="Real-time budget vs actual spending monitoring dengan alert overspend" />;
+      case 'team': return <PlaceholderApp title="Team Management" icon="👥" description="Worker assignment, attendance tracking, dan payroll management" />;
+      case 'equipment': return <PlaceholderApp title="Equipment Tracker" icon="🚛" description="Heavy equipment monitoring: lokasi, fuel, service schedule, availability" />;
+      case 'safety': return <PlaceholderApp title="Safety Inspector" icon="🛡️" description="Daily K3 safety checks, incident reporting, safety training tracker" />;
+      case 'quality': return <PlaceholderApp title="Quality Control" icon="📋" description="QC inspection checklist, defect tracking, rework management" />;
+      case 'invoice': return <PlaceholderApp title="Invoice Management" icon="📄" description="Invoice creation, payment tracking, aging report, automatic reminders" />;
+      case 'documents': return <PlaceholderApp title="Document Manager" icon="📁" description="Central repository: contracts, permits, certificates, legal documents" />;
+      case 'client-portal': return <PlaceholderApp title="Client Portal" icon="📊" description="Owner dashboard: progress overview, budget status, milestone tracking" />;
+      case 'analytics': return <PlaceholderApp title="Analytics Dashboard" icon="📈" description="KPI metrics, performance trends, predictive analytics, custom reports" />;
+
+      default: return <WelcomeScreen setActiveApp={setActiveApp} />;
     }
   };
 
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar activeApp={activeApp} setActiveApp={setActiveApp} />
-      
-      <main className="flex-1 overflow-y-auto bg-gray-50">
+      <main className="flex-1 overflow-y-auto bg-slate-50">
         {renderApp()}
       </main>
-
       <Chatbot isOpen={chatOpen} setIsOpen={setChatOpen} />
     </div>
   );

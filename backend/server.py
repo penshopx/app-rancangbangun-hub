@@ -8,7 +8,7 @@ import logging
 from pathlib import Path
 
 # Import routes
-from routes import rab, bom, chat, gantt, site_reports, blueprints, tenders, fat, maintenance, contractors, bidding, evidence, lpjk, rab_enhanced, marketplace, chatbot_agentic
+from routes import rab, bom, chat, gantt, site_reports, blueprints, tenders, fat, maintenance, contractors, bidding, evidence, lpjk, rab_enhanced, marketplace, chatbot_agentic, waitlist
 from database import client
 
 ROOT_DIR = Path(__file__).parent
@@ -42,6 +42,7 @@ api_router.include_router(lpjk.router)
 api_router.include_router(rab_enhanced.router)
 api_router.include_router(marketplace.router)
 api_router.include_router(chatbot_agentic.router)
+api_router.include_router(waitlist.router)
 
 # Include the router in the main app
 app.include_router(api_router)

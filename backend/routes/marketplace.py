@@ -213,6 +213,29 @@ async def seed_marketplace_projects():
     
     return {"message": f"{len(sample_projects)} project postings seeded successfully"}
 
+class BidSubmission(BaseModel):
+    project_id: str
+    price: Optional[str] = ""
+    duration: Optional[str] = ""
+    company: Optional[str] = ""
+    approach: Optional[str] = ""
+    submitted_at: str = Field(default_factory=lambda: datetime.now().isoformat())
+
+@router.post("/bids")
+async def submit_bid(bid: BidSubmission):
+    """Submit bid for a project"""
+    doc = bid.model_dump()
+    doc["id"] = str(uuid.uuid4())
+    await db.marketplace_bids.insert_one(doc)
+    await db.marketplace_projects.update_one({"id": bid.project_id}, {"$inc": {"bid_count": 1}})
+    return {"message": "Bid submitted successfully", "id": doc["id"]}
+
+@router.get("/bids/{project_id}")
+async def get_bids_for_project(project_id: str):
+    """Get all bids for a project"""
+    bids = await db.marketplace_bids.find({"project_id": project_id}, {"_id": 0}).to_list(100)
+    return bids
+
 @router.get("/stats")
 async def get_marketplace_stats():
     """Get marketplace statistics"""
