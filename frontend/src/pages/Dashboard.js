@@ -19,7 +19,6 @@ import BiddingSystem from '@/components/apps/BiddingSystem';
 import AccountabilityHub from '@/components/apps/AccountabilityHub';
 import PlatformEngine from '@/components/apps/PlatformEngine';
 import StakeholderHub from '@/components/apps/StakeholderHub';
-import Chatbot from '@/components/ChatbotAgentic';
 import PlaceholderApp from '@/components/apps/PlaceholderApp';
 
 const WelcomeScreen = ({ setActiveApp }) => {
@@ -68,7 +67,6 @@ const WelcomeScreen = ({ setActiveApp }) => {
 
 const Dashboard = () => {
   const [activeApp, setActiveApp] = useState('welcome');
-  const [chatOpen, setChatOpen] = useState(false);
 
   const renderApp = () => {
     switch (activeApp) {
@@ -108,7 +106,6 @@ const Dashboard = () => {
       <main className="flex-1 overflow-y-auto bg-slate-50">
         {renderApp()}
       </main>
-      <Chatbot isOpen={chatOpen} setIsOpen={setChatOpen} />
     </div>
   );
 };
