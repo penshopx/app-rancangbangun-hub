@@ -18,6 +18,7 @@ import InvoiceManager from '@/components/apps/InvoiceManager';
 import BiddingSystem from '@/components/apps/BiddingSystem';
 import AccountabilityHub from '@/components/apps/AccountabilityHub';
 import PlatformEngine from '@/components/apps/PlatformEngine';
+import StakeholderHub from '@/components/apps/StakeholderHub';
 import Chatbot from '@/components/ChatbotAgentic';
 import PlaceholderApp from '@/components/apps/PlaceholderApp';
 
@@ -88,6 +89,7 @@ const Dashboard = () => {
       case 'bidding': return <BiddingSystem />;
       case 'accountability': return <AccountabilityHub />;
       case 'platform': return <PlatformEngine />;
+      case 'stakeholder': return <StakeholderHub />;
       case 'team': return <PlaceholderApp title="Team Management" icon="👥" description="Worker assignment, attendance tracking, dan payroll management" />;
       case 'equipment': return <PlaceholderApp title="Equipment Tracker" icon="🚛" description="Heavy equipment monitoring: lokasi, fuel, service schedule, availability" />;
       case 'safety': return <PlaceholderApp title="Safety Inspector" icon="🛡️" description="Daily K3 safety checks, incident reporting, safety training tracker" />;
