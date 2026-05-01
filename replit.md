@@ -66,6 +66,7 @@ backend/          FastAPI app
 6. **Phase 4c (Done)**: Invoice Manager — invoice creation, PDF preview, payment tracking
 7. **Phase 5 (Done)**: Bidding System — 4-tab flow: posting proyek, evaluasi penawaran, kontrak digital + termin schedule
 8. **Phase 5b (Done)**: Accountability Hub — 4-tab: jaminan/garansi, QC standards, dispute resolution, escrow mechanism
+9. **Phase 6 (Done)**: Platform Engine — 5-tab business strategy layer: flywheel/network effects, revenue architecture (6 streams), smart matching algorithm, supply chain finance/fintech, market intelligence & risk engine
 
 ## Key Features
 - **Landing Page** (`/`): Marketing page with waitlist signup

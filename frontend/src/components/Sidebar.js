@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calculator, Search, FileText, Package, BarChart3, MapPin, CheckCircle2, Wrench, Users, Gavel, DollarSign, FileCheck, FolderOpen, UserCheck, Truck, Shield, Activity, TrendingUp, BarChart, ShoppingBag, ClipboardList, Home, ShieldCheck } from 'lucide-react';
+import { Calculator, Search, FileText, Package, BarChart3, MapPin, CheckCircle2, Wrench, Users, Gavel, DollarSign, FileCheck, FolderOpen, UserCheck, Truck, Shield, Activity, TrendingUp, BarChart, ShoppingBag, ClipboardList, Home, ShieldCheck, Layers } from 'lucide-react';
 
 const Sidebar = ({ activeApp, setActiveApp }) => {
   const navigate = useNavigate();
 
-  const newApps = ['marketplace', 'project-manager', 'contractors', 'budget', 'invoice', 'bidding', 'accountability'];
+  const newApps = ['marketplace', 'project-manager', 'contractors', 'budget', 'invoice', 'bidding', 'accountability', 'platform'];
 
   const apps = [
     {
@@ -59,10 +59,11 @@ const Sidebar = ({ activeApp, setActiveApp }) => {
       ]
     },
     {
-      category: '📈 Analytics',
+      category: '💡 Bisnis & Strategi',
       items: [
-        { id: 'client-portal', name: 'Client Portal', icon: TrendingUp },
-        { id: 'analytics',     name: 'Analytics',     icon: BarChart },
+        { id: 'platform',      name: 'Platform Engine', icon: Layers },
+        { id: 'analytics',     name: 'Analytics',        icon: BarChart },
+        { id: 'client-portal', name: 'Client Portal',    icon: TrendingUp },
       ]
     }
   ];
