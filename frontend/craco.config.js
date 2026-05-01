@@ -78,6 +78,19 @@ if (config.enableVisualEdits && babelMetadataPlugin) {
 }
 
 webpackConfig.devServer = (devServerConfig) => {
+  // Configure host and port for Replit
+  devServerConfig.host = "0.0.0.0";
+  devServerConfig.port = 5000;
+  devServerConfig.allowedHosts = "all";
+  
+  // Proxy API calls to the backend
+  devServerConfig.proxy = {
+    "/api": {
+      target: "http://localhost:8001",
+      changeOrigin: true,
+    }
+  };
+
   // Apply visual edits dev server setup only if enabled
   if (config.enableVisualEdits && setupDevServer) {
     devServerConfig = setupDevServer(devServerConfig);
