@@ -1,67 +1,68 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calculator, Search, FileText, Package, BarChart3, MapPin, CheckCircle2, Wrench, Users, Gavel, DollarSign, FileCheck, FolderOpen, UserCheck, Truck, Shield, Activity, TrendingUp, BarChart, ShoppingBag, ClipboardList, Home } from 'lucide-react';
+import { Calculator, Search, FileText, Package, BarChart3, MapPin, CheckCircle2, Wrench, Users, Gavel, DollarSign, FileCheck, FolderOpen, UserCheck, Truck, Shield, Activity, TrendingUp, BarChart, ShoppingBag, ClipboardList, Home, ShieldCheck } from 'lucide-react';
 
 const Sidebar = ({ activeApp, setActiveApp }) => {
   const navigate = useNavigate();
 
-  const newApps = ['marketplace', 'project-manager', 'contractors', 'budget', 'invoice'];
+  const newApps = ['marketplace', 'project-manager', 'contractors', 'budget', 'invoice', 'bidding', 'accountability'];
 
   const apps = [
     {
-      category: '🌐 Marketplace',
+      category: '🌐 Marketplace & Kontrak',
       items: [
-        { id: 'marketplace', name: 'Marketplace', icon: ShoppingBag },
-        { id: 'project-manager', name: 'Proyek Saya', icon: ClipboardList },
-        { id: 'bidding', name: 'Bidding', icon: Gavel },
-        { id: 'contractors', name: 'Kontraktor', icon: Users },
+        { id: 'marketplace',     name: 'Marketplace',    icon: ShoppingBag },
+        { id: 'project-manager', name: 'Proyek Saya',    icon: ClipboardList },
+        { id: 'bidding',         name: 'Bidding & SPK',  icon: Gavel },
+        { id: 'accountability',  name: 'Jaminan & QC',   icon: ShieldCheck },
+        { id: 'contractors',     name: 'Kontraktor',      icon: Users },
       ]
     },
     {
       category: '📋 Pengadaan',
       items: [
-        { id: 'rab', name: 'RAB Calc', icon: Calculator },
-        { id: 'search', name: 'Search', icon: Search },
+        { id: 'rab',    name: 'RAB Calc', icon: Calculator },
+        { id: 'search', name: 'Search',   icon: Search },
       ]
     },
     {
       category: '📐 Perencanaan',
       items: [
         { id: 'blueprint', name: 'Blueprints', icon: FileText },
-        { id: 'bom', name: 'Smart BOM', icon: Package },
-        { id: 'gantt', name: 'Gantt', icon: BarChart3 },
-        { id: 'budget', name: 'Budget', icon: DollarSign },
+        { id: 'bom',       name: 'Smart BOM',  icon: Package },
+        { id: 'gantt',     name: 'Gantt',      icon: BarChart3 },
+        { id: 'budget',    name: 'Budget',     icon: DollarSign },
       ]
     },
     {
       category: '🏗️ Pelaksanaan',
       items: [
         { id: 'site-control', name: 'Site Control', icon: MapPin },
-        { id: 'team', name: 'Team', icon: UserCheck },
-        { id: 'equipment', name: 'Equipment', icon: Truck },
-        { id: 'safety', name: 'Safety', icon: Shield },
+        { id: 'team',         name: 'Team',          icon: UserCheck },
+        { id: 'equipment',    name: 'Equipment',     icon: Truck },
+        { id: 'safety',       name: 'Safety',        icon: Shield },
       ]
     },
     {
       category: '✅ Quality & Compliance',
       items: [
-        { id: 'fat', name: 'FAT', icon: CheckCircle2 },
-        { id: 'quality', name: 'QC', icon: Activity },
+        { id: 'fat',         name: 'FAT',         icon: CheckCircle2 },
+        { id: 'quality',     name: 'QC',          icon: Activity },
         { id: 'maintenance', name: 'Maintenance', icon: Wrench },
       ]
     },
     {
       category: '💰 Finansial & Admin',
       items: [
-        { id: 'invoice', name: 'Invoice', icon: FileCheck },
-        { id: 'documents', name: 'Documents', icon: FolderOpen },
+        { id: 'invoice',   name: 'Invoice',    icon: FileCheck },
+        { id: 'documents', name: 'Documents',  icon: FolderOpen },
       ]
     },
     {
       category: '📈 Analytics',
       items: [
         { id: 'client-portal', name: 'Client Portal', icon: TrendingUp },
-        { id: 'analytics', name: 'Analytics', icon: BarChart },
+        { id: 'analytics',     name: 'Analytics',     icon: BarChart },
       ]
     }
   ];

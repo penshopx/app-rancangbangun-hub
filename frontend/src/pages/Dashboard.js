@@ -15,16 +15,18 @@ import ProjectManager from '@/components/apps/ProjectManager';
 import ContractorProfile from '@/components/apps/ContractorProfile';
 import BudgetTracker from '@/components/apps/BudgetTracker';
 import InvoiceManager from '@/components/apps/InvoiceManager';
+import BiddingSystem from '@/components/apps/BiddingSystem';
+import AccountabilityHub from '@/components/apps/AccountabilityHub';
 import Chatbot from '@/components/ChatbotAgentic';
 import PlaceholderApp from '@/components/apps/PlaceholderApp';
 
 const WelcomeScreen = ({ setActiveApp }) => {
   const navigate = useNavigate();
   const quickActions = [
-    { key: 'marketplace', icon: '🏗️', label: 'Cari Proyek / Kontraktor', color: 'orange' },
-    { key: 'project-manager', icon: '📊', label: 'Kelola Proyek Saya', color: 'blue' },
-    { key: 'rab', icon: '💰', label: 'Hitung RAB', color: 'green' },
-    { key: 'contractors', icon: '✅', label: 'Direktori Kontraktor', color: 'purple' },
+    { key: 'marketplace',    icon: '🏗️', label: 'Cari Proyek / Kontraktor',  color: 'orange' },
+    { key: 'bidding',        icon: '⚖️', label: 'Bidding & Kontrak Digital',  color: 'blue' },
+    { key: 'project-manager',icon: '📊', label: 'Kelola Proyek Saya',         color: 'green' },
+    { key: 'accountability', icon: '🛡️', label: 'Jaminan & Pertanggungjawaban', color: 'purple' },
   ];
   return (
     <div className="flex items-center justify-center h-full bg-slate-50">
@@ -82,7 +84,8 @@ const Dashboard = () => {
       case 'budget': return <BudgetTracker />;
       case 'invoice': return <InvoiceManager />;
 
-      case 'bidding': return <PlaceholderApp title="Bidding System" icon="⚖️" description="Sistem tender kompetitif — kontraktor submit proposal, owner compare & select best offer" />;
+      case 'bidding': return <BiddingSystem />;
+      case 'accountability': return <AccountabilityHub />;
       case 'team': return <PlaceholderApp title="Team Management" icon="👥" description="Worker assignment, attendance tracking, dan payroll management" />;
       case 'equipment': return <PlaceholderApp title="Equipment Tracker" icon="🚛" description="Heavy equipment monitoring: lokasi, fuel, service schedule, availability" />;
       case 'safety': return <PlaceholderApp title="Safety Inspector" icon="🛡️" description="Daily K3 safety checks, incident reporting, safety training tracker" />;

@@ -64,6 +64,8 @@ backend/          FastAPI app
 4. **Phase 4 (Done)**: Enhanced Contractor Profiles — SBU/LPJK verification, portfolio, ratings, contact
 5. **Phase 4b (Done)**: Budget Tracker — RAB vs actual, overspend alerts, category breakdown
 6. **Phase 4c (Done)**: Invoice Manager — invoice creation, PDF preview, payment tracking
+7. **Phase 5 (Done)**: Bidding System — 4-tab flow: posting proyek, evaluasi penawaran, kontrak digital + termin schedule
+8. **Phase 5b (Done)**: Accountability Hub — 4-tab: jaminan/garansi, QC standards, dispute resolution, escrow mechanism
 
 ## Key Features
 - **Landing Page** (`/`): Marketing page with waitlist signup
