@@ -1,4 +1,6 @@
 from fastapi import FastAPI, APIRouter
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 import os
@@ -52,6 +54,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Serve React static files in production
+STATIC_DIR = ROOT_DIR.parent / "frontend" / "build"
+if STATIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=str(STATIC_DIR / "static")), name="static")
+
+    @app.get("/{full_path:path}")
+    async def serve_react(full_path: str):
+        index = STATIC_DIR / "index.html"
+        return FileResponse(str(index))
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -61,4 +73,5 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    if client:
+        client.close()
