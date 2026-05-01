@@ -86,7 +86,7 @@ webpackConfig.devServer = (devServerConfig) => {
   // Proxy API calls to the backend
   devServerConfig.proxy = {
     "/api": {
-      target: "http://localhost:8001",
+      target: "http://localhost:8000",
       changeOrigin: true,
     }
   };

@@ -6,6 +6,17 @@ from pathlib import Path
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+mongo_url = os.environ.get('MONGO_URL', '')
+db_name = os.environ.get('DB_NAME', 'rancangbangun')
+
+client = None
+db = None
+
+if mongo_url:
+    try:
+        client = AsyncIOMotorClient(mongo_url)
+        db = client[db_name]
+    except Exception as e:
+        print(f"Warning: Could not connect to MongoDB: {e}")
+else:
+    print("Warning: MONGO_URL not set. Database features will be unavailable.")
